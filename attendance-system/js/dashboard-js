@@ -1,0 +1,21 @@
+// Load data from Local Storage
+let students = JSON.parse(localStorage.getItem("students")) || [];
+let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+// Total Students
+document.getElementById("totalStudents").innerText = students.length;
+
+// Count Present & Absent
+let present = 0;
+let absent = 0;
+
+attendance.forEach(student => {
+    if (student.status === "Present") {
+        present++;
+    } else {
+        absent++;
+    }
+});
+
+document.getElementById("presentStudents").innerText = present;
+document.getElementById("absentStudents").innerText = absent;

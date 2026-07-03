@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <h1>Student Attendance Management System</h1>
+    <h2>Dashboard</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Students</h3>
+            <h2 id="totalStudents">0</h2>
+        </div>
+
+        <div class="card">
+            <h3>Present</h3>
+            <h2 id="presentStudents">0</h2>
+        </div>
+
+        <div class="card">
+            <h3>Absent</h3>
+            <h2 id="absentStudents">0</h2>
+        </div>
+
+    </div>
+
+    <br>
+
+    <a href="students.html"><button>Students</button></a>
+    <a href="attendance.html"><button>Attendance</button></a>
+    <a href="report.html"><button>Report</button></a>
+    <a href="index.html"><button>Logout</button></a>
+
+</div>
+
+<script>
+const students = JSON.parse(localStorage.getItem("students")) || [];
+const attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+document.getElementById("totalStudents").textContent = students.length;
+
+let present = 0;
+let absent = 0;
+
+attendance.forEach(function(student) {
+    if (student.status === "Present") {
+        present++;
+    } else if (student.status === "Absent") {
+        absent++;
+    }
+});
+
+document.getElementById("presentStudents").textContent = present;
+document.getElementById("absentStudents").textContent = absent;
+</script>
+
+</body>
+</html>
